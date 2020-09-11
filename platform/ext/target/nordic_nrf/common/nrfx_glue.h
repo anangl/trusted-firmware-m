@@ -58,7 +58,11 @@ extern "C" {
  *
  * @param expression Expression to be evaluated.
  */
+#if defined(NDEBUG)
+#define NRFX_ASSERT(expression)  if (0 && (expression)) {}
+#else
 #define NRFX_ASSERT(expression)  assert(expression)
+#endif
 
 /**
  * @brief Macro for placing a compile time assertion.

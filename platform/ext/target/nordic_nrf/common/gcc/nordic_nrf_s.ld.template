@@ -43,9 +43,8 @@ MEMORY
      * aligned region so that the SAU can programmed to just set this region as \
      * Non-Secure Callable. \
      */ \
-    .gnu.sgstubs : ALIGN(32) \
+    .gnu.sgstubs CMSE_VENEER_REGION_START_ALIGN : \
     { \
-        CMSE_VENEER_REGION_START_ALIGN; \
         Load$$LR$$LR_VENEER$$Base = ABSOLUTE(.); \
         *(.gnu.sgstubs*) \
     } > FLASH \

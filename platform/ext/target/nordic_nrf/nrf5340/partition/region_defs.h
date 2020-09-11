@@ -114,8 +114,9 @@
 /* The Nordic IDAU has different alignment requirements than the ARM SAU, so
  * these override the default start and end alignments. */
 #define CMSE_VENEER_REGION_START_ALIGN \
-                . = ALIGN(CMSE_VENEER_REGION_SIZE) + 1; \
-                . = (ALIGN(SPU_FLASH_REGION_SIZE) - (CMSE_VENEER_REGION_SIZE))
+            (ALIGN(SPU_FLASH_REGION_SIZE) - CMSE_VENEER_REGION_SIZE + \
+                (. > (ALIGN(SPU_FLASH_REGION_SIZE) - CMSE_VENEER_REGION_SIZE) \
+                    ? SPU_FLASH_REGION_SIZE : 0))
 #define CMSE_VENEER_REGION_END_ALIGN (ALIGN(SPU_FLASH_REGION_SIZE))
 /* We want the veneers placed in the secure code so it isn't placed at the very
  * end. When placed in code, we don't need an absolute start address. */

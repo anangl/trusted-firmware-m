@@ -616,6 +616,9 @@ VENEERS()
          *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
          *(SORT(.dtors.*))
          *(.dtors)
+
+        *(.rodata.service_db)
+        *(.rodata.memory_data_list)
     } > FLASH
 
 #ifndef PSA_API_TEST_NS
